@@ -8,7 +8,7 @@ import dagger.android.HasActivityInjector;
 
 import javax.inject.Inject;
 
-public class BaseApplication extends Application  implements HasActivityInjector {
+public class BaseApplication extends Application implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;

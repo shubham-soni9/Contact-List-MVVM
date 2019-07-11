@@ -3,7 +3,6 @@ package com.contactdata.data;
 import android.content.Context;
 import com.contactdata.data.local.db.DbHelper;
 import com.contactdata.data.local.model.db.Contact;
-import com.google.gson.Gson;
 import io.reactivex.Observable;
 
 import javax.inject.Inject;

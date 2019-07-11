@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "contact")
-public class Contact {
+public class  Contact {
     @Expose
     @SerializedName("created_at")
     @ColumnInfo(name = "created_at")

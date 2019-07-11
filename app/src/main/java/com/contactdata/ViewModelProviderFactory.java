@@ -1,37 +1,40 @@
 package com.contactdata;
 
+import android.app.Application;
+import android.content.ContentResolver;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.contactdata.data.DataManager;
 import com.contactdata.ui.contactdetails.ContactDetailsViewModel;
 import com.contactdata.ui.contactlist.ContactListViewModel;
-import com.contactdata.utils.rx.SchedulerProvider;
-import org.jetbrains.annotations.NotNull;
-
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+/**
+ * Created by jyotidubey on 22/02/19.
+ */
+@Singleton
 public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFactory {
-    private final DataManager dataManager;
-    private final SchedulerProvider schedulerProvider;
 
-    @Inject
-    public ViewModelProviderFactory(DataManager dataManager,
-                                    SchedulerProvider schedulerProvider) {
-        this.dataManager = dataManager;
-        this.schedulerProvider = schedulerProvider;
+  private final ContentResolver contentResolver ;
+  private final Application application;
+
+  @Inject
+  public ViewModelProviderFactory(ContentResolver contentResolver,Application application) {
+    this.contentResolver = contentResolver;
+    this.application = application;
+  }
+
+
+  @Override
+  public <T extends ViewModel> T create(Class<T> modelClass) {
+    if (modelClass.isAssignableFrom(ContactListViewModel.class)) {
+      //noinspection unchecked
+      return (T) new ContactListViewModel(contentResolver,application);
     }
-
-
-    @NotNull
-    @Override
-    public <T extends ViewModel> T create(@NotNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(ContactListViewModel.class)) {
-            //noinspection unchecked
-            return (T) new ContactListViewModel(dataManager,schedulerProvider);
-        } else if (modelClass.isAssignableFrom(ContactDetailsViewModel.class)) {
-            //noinspection unchecked
-            return (T) new ContactDetailsViewModel(dataManager,schedulerProvider);
-        }
-        throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
+    else if (modelClass.isAssignableFrom(ContactDetailsViewModel.class)) {
+      //noinspection unchecked
+      return (T) new ContactDetailsViewModel(contentResolver,application);
     }
+    throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
+  }
 }

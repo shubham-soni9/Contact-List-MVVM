@@ -1,7 +1,9 @@
 package com.contactdata.di.module;
 
 import android.app.Application;
+import android.content.ContentResolver;
 import android.content.Context;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.room.Room;
 import com.contactdata.data.AppDataManager;
 import com.contactdata.data.DataManager;
@@ -12,8 +14,6 @@ import com.contactdata.di.DatabaseInfo;
 import com.contactdata.utils.AppConstants;
 import com.contactdata.utils.rx.AppSchedulerProvider;
 import com.contactdata.utils.rx.SchedulerProvider;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import dagger.Module;
 import dagger.Provides;
 
@@ -33,6 +33,12 @@ public class AppModule {
     @Singleton
     Context provideContext(Application application) {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    ContentResolver contentResolver(Application application) {
+        return application.getContentResolver();
     }
 
     @Provides
