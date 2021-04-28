@@ -50,7 +50,7 @@ class ContactListViewModel(private val contentResolver: ContentResolver, applica
     fun onRequestPermissionResult(grantResults: IntArray) {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.e(TAG,"Permission Granted")
-            checkPermission();
+            checkPermission()
         }
         else {
             navigator.showErrorAndFinish(R.string.permission_required)

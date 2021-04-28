@@ -1,15 +1,15 @@
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.contactdata"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,7 +34,7 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version"
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
-    implementation "com.google.android.material:material:1.1.0-alpha07"
+    implementation "com.google.android.material:material:1.4.0-alpha02"
     implementation "android.arch.paging:runtime:1.0.1"
 
     // dependency injection
@@ -49,7 +49,6 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$rootProject.roomDatabaseVersion"
     kapt "android.arch.persistence.room:compiler:1.1.1"
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomDatabaseVersion"
-
 
     // reactive
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
@@ -70,10 +69,7 @@ dependencies {
     // An Advanced EditText Library
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 
-    // Runtime Permission Library
-    implementation 'com.newtronlabs.easypermissions:easypermissions:2.9.0'
-
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
